@@ -9,7 +9,7 @@ namespace Ucu.Poo.Repositories
     /// <summary>
     /// Esta clase representa un auto.
     /// </summary>
-    public class Car
+    public class Car : IHasValue
     {
         /// <summary>
         /// Inicializa una nueva instancia de la clase <see cref="Car"/>.
@@ -44,8 +44,9 @@ namespace Ucu.Poo.Repositories
         /// </summary>
         /// <param name="field">El nombre del atributo.</param>
         /// <param name="value">El valor del atributo.</param>
-        /// <returns>Retorna <c>true</c> si el objeto tiene ese valor y
-        /// <c>false</c> en caso contrario.</returns>
+        /// <returns>
+        /// Retorna true si el auto tiene ese valor y false en caso contrario.
+        /// </returns>
         public bool HasValue(string field, string value)
         {
             if (field == null || value == null)

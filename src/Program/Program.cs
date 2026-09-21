@@ -18,24 +18,42 @@ namespace Ucu.Poo.Repositories
         /// </summary>
         public static void Main()
         {
+            // Creamos dos autos.
             Car jimny = new Car("Jimny", "Suzuki", 2024);
             Car focus = new Car("Focus", "Ford", 2018);
-            CarsDatabase database = new CarsDatabase();
+
+            // Creamos un repositorio que guarda autos.
+            Repository<Car> database = new Repository<Car>();
+
+            // Agregamos los autos al repositorio.
             database.Add(jimny);
             database.Add(focus);
+
+            // Guardamos el repositorio en un archivo.
             database.SaveToFile("cars.json");
+
             Console.WriteLine("Database saved:");
-            foreach (Car car in database.Cars)
+
+            // Mostramos todos los autos guardados.
+            foreach (Car car in database.Items)
             {
-                Console.WriteLine($"Model: {car.Model}, Maker: {car.Maker}, Year: {car.Year}");
+                Console.WriteLine(
+                    $"Model: {car.Model}, Maker: {car.Maker}, Year: {car.Year}");
             }
 
-            CarsDatabase restoredDatabase = new CarsDatabase();
+            // Creamos otro repositorio de autos.
+            Repository<Car> restoredDatabase = new Repository<Car>();
+
+            // Cargamos los autos desde el archivo.
             restoredDatabase.LoadFromFile("cars.json");
+
             Console.WriteLine("Restored database:");
-            foreach (Car car in database.Cars)
+
+            // Mostramos los autos que fueron cargados.
+            foreach (Car car in restoredDatabase.Items)
             {
-                Console.WriteLine($"Model: {car.Model}, Maker: {car.Maker}, Year: {car.Year}");
+                Console.WriteLine(
+                    $"Model: {car.Model}, Maker: {car.Maker}, Year: {car.Year}");
             }
         }
     }
